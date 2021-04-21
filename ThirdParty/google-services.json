@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "637328185138",
+    "project_id": "medhaus-160f7",
+    "storage_bucket": "medhaus-160f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637328185138:android:cbbdd844416b04a46e292b",
+        "android_client_info": {
+          "package_name": "com.medhaus.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "637328185138-e141gspnb56388mhamnfca48l4angdps.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSApNHCuE82FDYD9UykUAC9pj1ce7stIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "637328185138-e141gspnb56388mhamnfca48l4angdps.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

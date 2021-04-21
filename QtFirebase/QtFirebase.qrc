@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/QtFirebase">
+        <file>google-services.json</file>
+    </qresource>
+</RCC>

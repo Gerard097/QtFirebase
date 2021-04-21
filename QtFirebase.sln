@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QtFirebase", "QtFirebase\QtFirebase.vcxproj", "{DE363B10-F61C-41A3-93F0-B2BE2908BDB3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE363B10-F61C-41A3-93F0-B2BE2908BDB3}.Debug|x64.ActiveCfg = Debug|x64
+		{DE363B10-F61C-41A3-93F0-B2BE2908BDB3}.Debug|x64.Build.0 = Debug|x64
+		{DE363B10-F61C-41A3-93F0-B2BE2908BDB3}.Release|x64.ActiveCfg = Release|x64
+		{DE363B10-F61C-41A3-93F0-B2BE2908BDB3}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4E74E85A-4720-4DDB-AB00-292C9C50AC3D}
+	EndGlobalSection
+EndGlobal
