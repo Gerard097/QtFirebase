@@ -5,7 +5,8 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_QtFirebase.h"
 #include <firebase/app.h>
-
+#include <qserialport.h>
+#include <qserialportinfo.h>
 
 class QtFirebase : public QMainWindow
 {
@@ -13,8 +14,11 @@ class QtFirebase : public QMainWindow
 
 public:
     QtFirebase(QWidget *parent = Q_NULLPTR);
-
+    //~QtFirebase();
+ public slots:
+    void connectToSerialPort();
 private:
     Ui::QtFirebaseClass ui;
     std::unique_ptr<firebase::App> m_firebaseApp;
+    QSerialPort* m_serialPort;
 };

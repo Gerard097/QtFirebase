@@ -2,12 +2,16 @@
 
 #include <firebase/auth.h>
 #include <firebase/auth/user.h>
+#include <firebase/firestore.h>
+
+#include <qserialport.h>
 
 #include <qfile.h>
 
 
 QtFirebase::QtFirebase(QWidget *parent)
-    : QMainWindow(parent)
+    : QMainWindow(parent),
+      m_serialPort(new QSerialPort(this))
 {
   ui.setupUi(this);
 
@@ -21,8 +25,7 @@ QtFirebase::QtFirebase(QWidget *parent)
 
     auto data = file.readAll();
 
-    ui.label->setText(data);
-
+    //ui.label->setText(data);
 
     AppOptions Options;
 
@@ -49,9 +52,9 @@ QtFirebase::QtFirebase(QWidget *parent)
       while (res.status() == FutureStatus::kFutureStatusPending) {}
 
       if (res.error() == kAuthErrorNone) {
-        if (res.result()) {
+        if (res.result() && *res.result()) {
           auto user = *res.result();
-          ui.label->setText(QString::fromStdString(user->uid()));
+          
         }
         else {
           ui.label->setText("Invalid result");
@@ -68,5 +71,51 @@ QtFirebase::QtFirebase(QWidget *parent)
   else {
     ui.label->setText("Failed to open file");
   }
-  
+
+  connect(ui.sendButton, &QPushButton::clicked, [this]() {
+    ui.consoleLabel->setText("Botton down");
+    
+    QByteArray data = ui.serialData->toPlainText().toLocal8Bit();
+
+    m_serialPort->write(data);
+  });
+
+  connect(m_serialPort, &QSerialPort::errorOccurred, [this](QSerialPort::SerialPortError err) {
+    
+    if (QSerialPort::NoError == err) {
+      return;
+    }
+
+    ui.consoleLabel->setText("Error detected: " + QString("%1").arg(err));
+    ui.reconnect->setVisible(true);
+
+    if (QSerialPort::ResourceError == err) {
+      m_serialPort->close();
+    }
+  });
+
+  connect(ui.reconnect, &QPushButton::clicked, this, &QtFirebase::connectToSerialPort);
+
+  m_serialPort->setPortName("COM3");
+  m_serialPort->setBaudRate(9600);
+  m_serialPort->setDataBits(QSerialPort::Data8);
+  m_serialPort->setParity(QSerialPort::NoParity);
+  m_serialPort->setStopBits(QSerialPort::OneStop);
+  m_serialPort->setFlowControl(QSerialPort::NoFlowControl);
+
+  ui.reconnect->setVisible(false);
+
+  connectToSerialPort();
+}
+
+void QtFirebase::connectToSerialPort()
+{
+  if (m_serialPort->open(QIODevice::ReadWrite)) {
+    ui.consoleLabel->setText("Serial port opened");
+    ui.reconnect->setVisible(false);
+  }
+  else {
+    ui.consoleLabel->setText("Failed to open serial port");
+    ui.reconnect->setVisible(true);
+  }
 }
